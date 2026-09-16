@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">bugs</string>
+    <string name="full_name">ФИО</string>
+    <string name="gender">Пол</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="course">Курс</string>
+    <string name="difficulty">Уровень сложности</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="result_title">Данные игрока:</string>
+    <string name="zodiac_sign">Знак зодиака</string>
+
+    <string-array name="courses">
+        <item>1 курс</item>
+        <item>2 курс</item>
+        <item>3 курс</item>
+        <item>4 курс</item>
+        <item>5 курс</item>
+    </string-array>
 </resources>
