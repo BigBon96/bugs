@@ -10,6 +10,13 @@
     <string name="register">Зарегистрироваться</string>
     <string name="result_title">Данные игрока:</string>
     <string name="zodiac_sign">Знак зодиака</string>
+    <string name="authors_title">Авторы проекта</string>
+    <string name="author_photo">Фото автора</string>
+    <string name="settings_title">Настройки игры</string>
+    <string name="game_speed">Скорость игры</string>
+    <string name="max_bugs">Макс. количество тараканов</string>
+    <string name="bonus_interval">Интервал появления бонусов</string>
+    <string name="round_duration">Длительность раунда</string>
 
     <string-array name="courses">
         <item>1 курс</item>
