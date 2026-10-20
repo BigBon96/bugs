@@ -25,6 +25,15 @@ class MainActivity : AppCompatActivity() {
         val adapter = TabsPagerAdapter(this)
         viewPager.adapter = adapter
 
+        // Отключаем свайп на вкладке "Игра"
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                // Позиция 4 - это вкладка "Игра"
+                viewPager.isUserInputEnabled = position != 4
+            }
+        })
+
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Регистрация"

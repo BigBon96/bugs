@@ -17,8 +17,8 @@ data class Bug(
     val id: String = UUID.randomUUID().toString(),
     var x: Float,
     var y: Float,
-    val speedX: Float,
-    val speedY: Float,
+    var speedX: Float,
+    var speedY: Float,
     val size: Float,
     val type: BugType,
     val points: Int

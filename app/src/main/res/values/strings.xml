@@ -17,6 +17,9 @@
     <string name="max_bugs">Макс. количество тараканов</string>
     <string name="bonus_interval">Интервал появления бонусов</string>
     <string name="round_duration">Длительность раунда</string>
+    <string name="miss_penalty">Штраф за промах</string>
+    <string name="save_settings">Сохранить настройки</string>
+    <string name="reset_defaults">Сбросить по умолчанию</string>
 
     <string-array name="courses">
         <item>1 курс</item>

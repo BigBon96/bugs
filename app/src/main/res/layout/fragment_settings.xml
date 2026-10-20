@@ -88,39 +88,6 @@
             app:layout_constraintTop_toBottomOf="@id/textViewMaxBugs" />
 
         <TextView
-            android:id="@+id/textViewBonusInterval"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/bonus_interval"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seekBarMaxBugs" />
-
-        <TextView
-            android:id="@+id/textViewBonusIntervalValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="15 сек"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/textViewBonusInterval"
-            app:layout_constraintStart_toEndOf="@id/textViewBonusInterval" />
-
-        <SeekBar
-            android:id="@+id/seekBarBonusInterval"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:max="60"
-            android:min="10"
-            android:progress="15"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewBonusInterval" />
-
-        <TextView
             android:id="@+id/textViewRoundDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,7 +95,7 @@
             android:text="@string/round_duration"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seekBarBonusInterval" />
+            app:layout_constraintTop_toBottomOf="@id/seekBarMaxBugs" />
 
         <TextView
             android:id="@+id/textViewRoundDurationValue"
@@ -152,6 +119,59 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewRoundDuration" />
+
+        <TextView
+            android:id="@+id/textViewMissPenalty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/miss_penalty"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBarRoundDuration" />
+
+        <TextView
+            android:id="@+id/textViewMissPenaltyValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="5"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/textViewMissPenalty"
+            app:layout_constraintStart_toEndOf="@id/textViewMissPenalty" />
+
+        <SeekBar
+            android:id="@+id/seekBarMissPenalty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="20"
+            android:min="0"
+            android:progress="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMissPenalty" />
+
+        <Button
+            android:id="@+id/btnSaveSettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/save_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBarMissPenalty" />
+
+        <Button
+            android:id="@+id/btnResetDefaults"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/reset_defaults"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSaveSettings" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
