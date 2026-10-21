@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.BigBon.bugs.R
 import com.BigBon.bugs.game.BugFactory
 import com.BigBon.bugs.models.Bug
 import com.BigBon.bugs.models.GameSettings
 import com.BigBon.bugs.models.GameStats
 import com.BigBon.bugs.views.GameView
+import kotlinx.coroutines.launch
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
@@ -268,16 +270,22 @@ class GameFragment : Fragment() {
     }
 
     private fun showResults(stats: GameStats) {
+        // Сохраняем результат в базу данных
+        saveGameRecord(stats)
+
         // Показываем диалог с результатами
+        val accuracy = if (stats.hits + stats.misses > 0)
+            String.format("%.1f%%", stats.hits.toFloat() / (stats.hits + stats.misses) * 100)
+        else "0%"
+
         val dialog = android.app.AlertDialog.Builder(requireContext())
             .setTitle("Игра окончена!")
             .setMessage(
+                "Сложность: ${gameSettings.getDifficultyName()}\n" +
                 "Очки: ${stats.score}\n" +
                 "Попадания: ${stats.hits}\n" +
                 "Промахи: ${stats.misses}\n" +
-                "Точность: ${if (stats.hits + stats.misses > 0)
-                    String.format("%.1f%%", stats.hits.toFloat() / (stats.hits + stats.misses) * 100)
-                    else "0%"}"
+                "Точность: $accuracy"
             )
             .setPositiveButton("Новая игра") { _, _ ->
                 restartGame()
@@ -291,6 +299,36 @@ class GameFragment : Fragment() {
             .create()
 
         dialog.show()
+    }
+
+    private fun saveGameRecord(stats: GameStats) {
+        val prefsManager = com.BigBon.bugs.utils.PreferencesManager(requireContext())
+        val userId = prefsManager.getCurrentUserId()
+
+        // Если пользователь не выбран, не сохраняем
+        if (userId == -1L) {
+            return
+        }
+
+        val database = com.BigBon.bugs.database.AppDatabase.getDatabase(requireContext())
+        val repository = com.BigBon.bugs.repository.GameRepository(
+            database.userDao(),
+            database.gameRecordDao()
+        )
+
+        lifecycleScope.launch {
+            try {
+                repository.saveGameRecord(
+                    userId = userId,
+                    score = stats.score,
+                    hits = stats.hits,
+                    misses = stats.misses,
+                    difficulty = gameSettings.getDifficulty()
+                )
+            } catch (e: Exception) {
+                // Игнорируем ошибки сохранения
+            }
+        }
     }
 
     private fun restartGame() {
